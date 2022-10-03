@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Info Parser New",
+    "version": "0.1",
+    "description": "Addon that allows parsing of data and sending to Google Sheets",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApGj/E2F69Y2Ux8NLM/4rSWU4v7O0t6y92Va+w/3JlWhh+AUjbft0ZAwxqpQ7hbDXiHT3WVn1/wgcgfYm65D7w1xFUcwl8I0PwjccmyHB8IQbbyWsU+maIUq/3P2eaHoDoms26svn6gakD2bbZXNVSfoGNqd3OuJbQRfx9KyIC+UX5u7B1NI+NcI3nxmArnRZFZjJ35MOGEDkvEfn4YAVVwRjVMnVnjVNP7ujOcAf+vL0sn3pUNC5BXYx72ArojCMWH09prvIjk5r26Q9XloqoSjO+QIGBlPyUxiZ0xMfmRYZNh9OFr4C7osL2QydA+FEJNYvzydGLYioNKhQHecUgwIDAQAB",
+    "oauth2": {
+      "client_id": "927853059876-vlknqee23q1qhv0corsi4j81tq7p9vl1.apps.googleusercontent.com",
+      "scopes":[
+          "https://www.googleapis.com/auth/spreadsheets",          
+          "https://www.googleapis.com/auth/drive",
+          "https://www.googleapis.com/auth/drive.readonly",
+          "https://www.googleapis.com/auth/drive.file",
+          "https://www.googleapis.com/auth/spreadsheets.readonly"
+      ]
+      },
+    "permissions": ["scripting","tabs", "identity", "storage"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "web_accessible_resources":[{
+        "resources" : ["/htmlDocs/*.html"],
+        "matches":["*://axis.thejoint.com/*"]
+    }],
+      
+    "content_scripts": [
+      {
+        "matches":["*://axis.thejoint.com/","*://sheets.googleapis.com/*"],
+        "js": ["getSheets.js","jquery-2.1.3.min.js", "content.js", "oauth.js","storageEdit.js"]
+      }
+    ],
+    "action": {
+        "default_icon": "joint.png",
+        "default_title": "Click to review patient data before sending to Google Sheets."
+        
+    }
+  }
+  
